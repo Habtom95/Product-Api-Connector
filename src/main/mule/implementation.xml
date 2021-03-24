@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:mongo="http://www.mulesoft.org/schema/mule/mongo"
+	xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/current/mule-mongo.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<flow name="get-all-products-flow" doc:id="d548a125-b60c-4f44-ad82-98b3a8d612fe" >
+		<http:listener doc:name="GET /products" doc:id="663fe838-4492-4b0f-bc60-a19e178b1ab2" path="/products" config-ref="HTTP_Listener_config"/>
+		<mongo:find-documents doc:name="Find documents" doc:id="c8e55442-d4c7-4f50-afa3-c29c48a7518e" collectionName="products" fields="_id,item" config-ref="MongoDB_Config1">
+		</mongo:find-documents>
+		<ee:transform doc:name="Transform Message" doc:id="f564932b-cfc7-40d8-b6f6-d8eeb0aeab76" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+	<flow name="get-product-flow" doc:id="f54ef3bd-b7dc-4d07-8e94-946bb4d420e1" >
+		<http:listener doc:name="GET /products/{productId}" doc:id="73c1e070-cf50-4659-85d6-e73835f527f9" path="/products/{productId}" config-ref="HTTP_Listener_config"/>
+		<mongo:find-documents doc:name="Find documents" doc:id="ca4218aa-44f8-49b1-88c7-7fcfce5eac36" collectionName="products" fields="item" config-ref="MongoDB_Config1">
+			<mongo:query ><![CDATA[#[{"_id.oid" : "60557c07ef4bfa0c0ed914d2"}]]]></mongo:query>
+		</mongo:find-documents>
+		<ee:transform doc:name="Transform Message" doc:id="8cee5777-1732-408b-8737-17a3242f7408" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
