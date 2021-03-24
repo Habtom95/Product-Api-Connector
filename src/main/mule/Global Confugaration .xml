@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:mongo="http://www.mulesoft.org/schema/mule/mongo"
+	xmlns:product-api="http://www.mulesoft.org/schema/mule/product-api"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/product-api http://www.mulesoft.org/schema/mule/product-api/current/mule-product-api.xsd
+http://www.mulesoft.org/schema/mule/mongo http://www.mulesoft.org/schema/mule/mongo/current/mule-mongo.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<product-api:config name="Product_api_Config" doc:name="Product-api Config" doc:id="3f3365b6-ad43-4d42-b7af-5a1f64e74415" property_host="${api.host}" property_port="${api.port}" property_protocol="${api.protocol}" property_basePath="${api.basePath}" />
+	<configuration-properties doc:name="Configuration properties" doc:id="9882fb7e-fd6f-40ce-9fa5-2d6a5ac3d395" file="dev.yaml" />
+	<mongo:config name="MongoDB_Config1" doc:name="MongoDB Config" doc:id="5a4ce7b7-2de0-4793-8ab0-9bd351655eb6" >
+		<mongo:connection-string-connection connectionString="mongodb+srv://habtom:habtom@cluster0.ocry0.mongodb.net/Product?retryWrites=true&amp;w=majority" />
+	</mongo:config>
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="7c4a9e2b-e26a-4952-9c79-bac979301fbf" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+</mule>

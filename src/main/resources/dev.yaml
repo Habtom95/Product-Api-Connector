@@ -1,0 +1,13 @@
+http:
+  port: "8081"
+  path: "Greeting"
+api:
+  baseURL: "/v2/601c3671e6a61770dd70283f#metrics/replicaSet/605577f70e801b23ec824fe4/explorer/myFirstDatabase/products/find"
+  port: "443"
+  host: "cloud.mongodb.com"
+  protocol: "HTTPS"
+db:
+  host: "localhost"
+  port: "3306"
+  user: "root"
+  password: "![gp3Mmkvu0sGnsYT0XLLY6w==]"

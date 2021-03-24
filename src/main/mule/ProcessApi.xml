@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:product-api="http://www.mulesoft.org/schema/mule/product-api" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/product-api http://www.mulesoft.org/schema/mule/product-api/current/mule-product-api.xsd">
+	<flow name="productApi" doc:id="be2be305-2b47-49de-b966-5979d8f84178" >
+		<product-api:get-product-by-product-id doc:id="cf5bea26-dcc5-4f9b-ac79-4695e9a47317" config-ref="Product_api_Config" product-id="productId"/>
+	</flow>
+	<flow name="productsApi" doc:id="8a4fa183-aeaf-4547-9ff2-3bc16c5ed520" >
+		<product-api:get-products doc:name="Get products" doc:id="81b216c9-8aea-4754-97ad-dc3934876567" config-ref="Product_api_Config"/>
+	</flow>
+</mule>
